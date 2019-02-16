@@ -70,6 +70,23 @@ func (p *Parking) GetUnavailableSlots() []*slot.Slot {
 	return s
 }
 
+// GetRegNbrByColour - Return Registration Numbers by Colour
+func (p *Parking) GetRegNbrByColour(colour string) []string {
+	rn := make([]string, 0)
+
+	for _, slot := range p.Slots {
+		if !slot.IsAvailable() {
+			c := slot.GetCar()
+
+			if c != nil && c.GetColour() == colour {
+				rn = append(rn, c.GetRegNbr())
+			}
+		}
+	}
+
+	return rn
+}
+
 func (p *Parking) getNearestAvailableSlot() *slot.Slot {
 	for _, s := range p.Slots {
 		if s.IsAvailable() {

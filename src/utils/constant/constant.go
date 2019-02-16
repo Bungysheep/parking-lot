@@ -10,6 +10,9 @@ const (
 	// NewLine - New line
 	NewLine = "\n"
 
+	// Comma - Comma
+	Comma = ","
+
 	// MinimumCapacity - Minimum Capacity of a parking lot
 	MinimumCapacity = 1
 
