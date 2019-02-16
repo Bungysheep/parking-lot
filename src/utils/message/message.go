@@ -41,3 +41,8 @@ func CarEntered(slotNbr int) string {
 func CarExit(slotNbr int) string {
 	return fmt.Sprintf("Slot number %d is free", slotNbr)
 }
+
+// NotFound message
+func NotFound() string {
+	return fmt.Sprintf("Not found")
+}
