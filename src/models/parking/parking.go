@@ -1,6 +1,7 @@
 package parking
 
 import (
+	"fmt"
 	"models/car"
 	"models/slot"
 )
@@ -53,8 +54,16 @@ func (p *Parking) EnterCar(c *car.Car) *slot.Slot {
 }
 
 // ExitCar - Exit car from a parking
-func (p *Parking) ExitCar(slotNbr int) {
-	p.Slots[slotNbr-1].Exit()
+func (p *Parking) ExitCar(slotNbr int) *slot.Slot {
+	for _, slot := range p.Slots {
+		if slot.GetSlotNbr() == slotNbr && !slot.IsAvailable() {
+			slot.Exit()
+
+			return slot
+		}
+	}
+
+	return nil
 }
 
 // GetUnavailableSlots - Return all unavailable slots
@@ -96,7 +105,7 @@ func (p *Parking) GetSlotNbrByColour(colour string) []string {
 			c := slot.GetCar()
 
 			if c != nil && c.GetColour() == colour {
-				sn = append(sn, string(slot.GetSlotNbr()))
+				sn = append(sn, fmt.Sprintf("%v", slot.GetSlotNbr()))
 			}
 		}
 	}
@@ -113,7 +122,7 @@ func (p *Parking) GetSlotNbrByRegNbr(regNbr string) []string {
 			c := slot.GetCar()
 
 			if c != nil && c.GetRegNbr() == regNbr {
-				sn = append(sn, string(slot.GetSlotNbr()))
+				sn = append(sn, fmt.Sprintf("%v", slot.GetSlotNbr()))
 			}
 		}
 	}

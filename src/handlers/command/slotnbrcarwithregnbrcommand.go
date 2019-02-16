@@ -14,7 +14,7 @@ type SlotNbrCarWithRegNbrCommand struct {
 	RegNbr string
 }
 
-// NewStatusCommand - Create a new slot_number_for_registration_number command
+// NewSlotNbrCarWithRegNbrCommand - Create a new slot_number_for_registration_number command
 func NewSlotNbrCarWithRegNbrCommand() *SlotNbrCarWithRegNbrCommand {
 	sn := new(SlotNbrCarWithRegNbrCommand)
 	sn.ActionName = constant.SlotNumberByRegistrationNumberAction
@@ -25,7 +25,7 @@ func NewSlotNbrCarWithRegNbrCommand() *SlotNbrCarWithRegNbrCommand {
 // Parse - Parse an argument string of slot_number_for_registration_number command
 func (sn *SlotNbrCarWithRegNbrCommand) Parse(argString string) error {
 	sn.Command.Parse(argString)
-	if len(sn.Args) != 1 {
+	if len(sn.Args) != 1 || sn.Args[0] == constant.EmptyString {
 		return errors.New(message.ParameterIsInvalid(argString))
 	}
 

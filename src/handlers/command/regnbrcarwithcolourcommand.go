@@ -14,7 +14,7 @@ type RegNbrCarWithColourCommand struct {
 	Colour string
 }
 
-// NewStatusCommand - Create a new registration_numbers_for_cars_with_colour command
+// NewRegNbrCarWithColourCommand - Create a new registration_numbers_for_cars_with_colour command
 func NewRegNbrCarWithColourCommand() *RegNbrCarWithColourCommand {
 	rn := new(RegNbrCarWithColourCommand)
 	rn.ActionName = constant.RegistrationNumberOfCarsByColourAction
@@ -25,7 +25,7 @@ func NewRegNbrCarWithColourCommand() *RegNbrCarWithColourCommand {
 // Parse - Parse an argument string of registration_numbers_for_cars_with_colour command
 func (rn *RegNbrCarWithColourCommand) Parse(argString string) error {
 	rn.Command.Parse(argString)
-	if len(rn.Args) != 1 {
+	if len(rn.Args) != 1 || rn.Args[0] == constant.EmptyString {
 		return errors.New(message.ParameterIsInvalid(argString))
 	}
 

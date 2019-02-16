@@ -25,7 +25,7 @@ func NewStatusCommand() *StatusCommand {
 // Parse - Parse an argument string of status command
 func (s *StatusCommand) Parse(argString string) error {
 	s.Command.Parse(argString)
-	if len(s.Args) != 0 {
+	if len(s.Args) != 1 || s.Args[0] != constant.EmptyString {
 		return errors.New(message.ParameterIsInvalid(argString))
 	}
 
@@ -49,17 +49,21 @@ func (s *StatusCommand) Execute() string {
 
 	us := parkingcenter.Get().GetParking().GetUnavailableSlots()
 
-	for _, slot := range us {
-		c := slot.GetCar()
-		result = append(
-			result,
-			fmt.Sprintf(
-				"%-10d%-18s%-10s",
-				slot.GetSlotNbr(),
-				c.GetRegNbr(),
-				c.GetColour(),
-			),
-		)
+	if len(us) == 0 {
+		result = []string{"No Data Found"}
+	} else {
+		for _, slot := range us {
+			c := slot.GetCar()
+			result = append(
+				result,
+				fmt.Sprintf(
+					"%-10d%-18s%-10s",
+					slot.GetSlotNbr(),
+					c.GetRegNbr(),
+					c.GetColour(),
+				),
+			)
+		}
 	}
 
 	return strings.Join(result, constant.NewLine)
