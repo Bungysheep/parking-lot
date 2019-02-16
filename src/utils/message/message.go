@@ -56,3 +56,7 @@ func CarExit(slotNbr int) string {
 func NotFound() string {
 	return fmt.Sprintf("Not found")
 }
+
+func NoDataFound() string {
+	return fmt.Sprintf("No Data Found")
+}

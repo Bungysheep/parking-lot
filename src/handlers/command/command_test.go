@@ -1,10 +1,13 @@
 package command
 
 import (
+	"fmt"
 	"models/car"
 	"models/parking"
 	"models/parkingcenter"
+	"strings"
 	"testing"
+	"utils/constant"
 	"utils/message"
 )
 
@@ -261,5 +264,112 @@ func TestLeaveParkWithValidArgs(t *testing.T) {
 
 	if result := l.Execute(); result != message.CarExit(1) {
 		t.Errorf("Expected to have result: %s, but got %s", message.CarExit(1), result)
+	}
+}
+
+func TestStatusWithoutArgs(t *testing.T) {
+	parkingcenter.Get().SetParking(parking.New(5))
+
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-HH-9999", "White"))
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-BB-0001", "Black"))
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-HH-7777", "Red"))
+
+	s := NewStatusCommand()
+	if s == nil {
+		t.Errorf("Expected to have a new Status Command.")
+	}
+
+	if err := s.Parse(""); err != nil {
+		t.Errorf("Expected to have no error, but got an error saying: %s", err.Error())
+	}
+}
+
+func TestStatusWithInvalidArgs(t *testing.T) {
+	parkingcenter.Get().SetParking(parking.New(5))
+
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-HH-9999", "White"))
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-BB-0001", "Black"))
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-HH-7777", "Red"))
+
+	s := NewStatusCommand()
+	if s == nil {
+		t.Errorf("Expected to have a new Status Command.")
+	}
+
+	if err := s.Parse("ABC DEF"); err.Error() != message.ParameterIsInvalid("ABC DEF") {
+		t.Errorf("Expected to have an error saying: %s, but got an error saying: %s", message.ParameterIsInvalid("ABC DEF"), err.Error())
+	}
+}
+
+func TestStatusWithValidArgs(t *testing.T) {
+	parkingcenter.Get().SetParking(parking.New(5))
+
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-HH-9999", "White"))
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-BB-0001", "Black"))
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-HH-7777", "Red"))
+
+	s := NewStatusCommand()
+	if s == nil {
+		t.Errorf("Expected to have a new Status Command.")
+	}
+
+	if err := s.Parse(""); err != nil {
+		t.Errorf("Expected to have no error, but got an error saying: %s", err.Error())
+	}
+
+	if err := s.Validate(); err != nil {
+		t.Errorf("Expected to have no error, but got an error saying: %s", err.Error())
+	}
+
+	var expResult = []string{
+		fmt.Sprintf("%-10s%-18s%-10s",
+			"Slot No.",
+			"Registration No",
+			"Colour",
+		),
+		fmt.Sprintf("%-10s%-18s%-10s",
+			"1",
+			"KA-01-HH-9999",
+			"White",
+		),
+		fmt.Sprintf("%-10s%-18s%-10s",
+			"2",
+			"KA-01-BB-0001",
+			"Black",
+		),
+		fmt.Sprintf("%-10s%-18s%-10s",
+			"3",
+			"KA-01-HH-7777",
+			"Red",
+		),
+	}
+
+	if result := s.Execute(); result != strings.Join(expResult, constant.NewLine) {
+		t.Errorf("Expected to have result: %s, but got %s", strings.Join(expResult, constant.NewLine), result)
+	}
+}
+
+func TestStatusWhenNoCarParked(t *testing.T) {
+	parkingcenter.Get().SetParking(parking.New(5))
+
+	s := NewStatusCommand()
+	if s == nil {
+		t.Errorf("Expected to have a new Status Command.")
+	}
+
+	if err := s.Parse(""); err != nil {
+		t.Errorf("Expected to have no error, but got an error saying: %s", err.Error())
+	}
+
+	if err := s.Validate(); err != nil {
+		t.Errorf("Expected to have no error, but got an error saying: %s", err.Error())
+	}
+
+	var expResult = []string{
+		message.NoDataFound(),
+	}
+
+	if result := s.Execute(); result != strings.Join(expResult, constant.NewLine) {
+		t.Errorf("Expected to have result: %s, but got %s", strings.Join(expResult, constant.NewLine), result)
 	}
 }
