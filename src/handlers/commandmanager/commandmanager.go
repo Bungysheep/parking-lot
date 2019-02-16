@@ -49,6 +49,7 @@ func (cm *CommandManager) Parse(action string) error {
 	}
 	cm.Action = strings.ToLower(result[0])
 
+	cm.ActionArgs = constant.EmptyString
 	if len(result) > 1 {
 		cm.ActionArgs = result[1]
 	}

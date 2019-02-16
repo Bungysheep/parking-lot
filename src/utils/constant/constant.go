@@ -16,6 +16,9 @@ const (
 	// MinimumCapacity - Minimum Capacity of a parking lot
 	MinimumCapacity = 1
 
+	// PS1 - Primary prompt
+	PS1 = "$"
+
 	// CreateParkingLotAction - Action to create a parking lot
 	CreateParkingLotAction = "create_parking_lot"
 
