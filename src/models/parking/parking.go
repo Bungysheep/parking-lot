@@ -42,11 +42,13 @@ func (p *Parking) HasAvailableSlot() bool {
 }
 
 // EnterCar - Enter car to a parking
-func (p *Parking) EnterCar(c *car.Car) {
+func (p *Parking) EnterCar(c *car.Car) *slot.Slot {
 	as := p.getNearestAvailableSlot()
 	if as != nil {
 		as.Enter(c)
 	}
+
+	return as
 }
 
 // ExitCar - Exit car from a parking
