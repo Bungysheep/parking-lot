@@ -1,6 +1,7 @@
 package parking
 
 import (
+	"fmt"
 	"models/car"
 	"models/slot"
 )
@@ -104,7 +105,7 @@ func (p *Parking) GetSlotNbrByColour(colour string) []string {
 			c := slot.GetCar()
 
 			if c != nil && c.GetColour() == colour {
-				sn = append(sn, string(slot.GetSlotNbr()))
+				sn = append(sn, fmt.Sprintf("%v", slot.GetSlotNbr()))
 			}
 		}
 	}
@@ -121,7 +122,7 @@ func (p *Parking) GetSlotNbrByRegNbr(regNbr string) []string {
 			c := slot.GetCar()
 
 			if c != nil && c.GetRegNbr() == regNbr {
-				sn = append(sn, string(slot.GetSlotNbr()))
+				sn = append(sn, fmt.Sprintf("%v", slot.GetSlotNbr()))
 			}
 		}
 	}

@@ -440,3 +440,137 @@ func TestRegNbrByColorWhenNotFound(t *testing.T) {
 		t.Errorf("Expected to have result %s, but got %s", message.NotFound(), result)
 	}
 }
+
+func TestSlotNbrByColorWithoutArgs(t *testing.T) {
+	parkingcenter.Get().SetParking(parking.New(5))
+
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-HH-9999", "White"))
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-BB-0001", "Black"))
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-HH-7777", "Red"))
+
+	sn := NewSlotNbrCarWithColourCommand()
+	if sn == nil {
+		t.Errorf("Expected to have a new Slot Number with Colour Command.")
+	}
+
+	if err := sn.Parse(""); err.Error() != message.ParameterIsInvalid("") {
+		t.Errorf("Expected to have an error saying: %s, but got error: %s", message.ParameterIsInvalid(""), err.Error())
+	}
+}
+
+func TestSlotNbrByColorWithValidArgs(t *testing.T) {
+	parkingcenter.Get().SetParking(parking.New(5))
+
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-HH-9999", "White"))
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-BB-0001", "White"))
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-HH-7777", "Red"))
+
+	sn := NewSlotNbrCarWithColourCommand()
+	if sn == nil {
+		t.Errorf("Expected to have a new Slot Number with Colour Command.")
+	}
+
+	if err := sn.Parse("White"); err != nil {
+		t.Errorf("Expected to have no error, but got error saying: %s", err.Error())
+	}
+
+	if err := sn.Validate(); err != nil {
+		t.Errorf("Expected to have no error, but got error saying: %s", err.Error())
+	}
+
+	if result := sn.Execute(); result != "1, 2" {
+		t.Errorf("Expected to have result %s, but got %s", "1, 2", result)
+	}
+}
+
+func TestSlotNbrByColorWhenNotFound(t *testing.T) {
+	parkingcenter.Get().SetParking(parking.New(5))
+
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-HH-9999", "White"))
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-BB-0001", "Black"))
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-HH-7777", "Red"))
+
+	sn := NewSlotNbrCarWithColourCommand()
+	if sn == nil {
+		t.Errorf("Expected to have a new Slot Number with Colour Command.")
+	}
+
+	if err := sn.Parse("Yellow"); err != nil {
+		t.Errorf("Expected to have no error, but got error saying: %s", err.Error())
+	}
+
+	if err := sn.Validate(); err != nil {
+		t.Errorf("Expected to have no error, but got error saying: %s", err.Error())
+	}
+
+	if result := sn.Execute(); result != message.NotFound() {
+		t.Errorf("Expected to have result %s, but got %s", message.NotFound(), result)
+	}
+}
+
+func TestSlotNbrByRegNbrWithoutArgs(t *testing.T) {
+	parkingcenter.Get().SetParking(parking.New(5))
+
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-HH-9999", "White"))
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-BB-0001", "Black"))
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-HH-7777", "Red"))
+
+	sn := NewSlotNbrCarWithRegNbrCommand()
+	if sn == nil {
+		t.Errorf("Expected to have a new Slot Number with Registration Number Command.")
+	}
+
+	if err := sn.Parse(""); err.Error() != message.ParameterIsInvalid("") {
+		t.Errorf("Expected to have an error saying: %s, but got error: %s", message.ParameterIsInvalid(""), err.Error())
+	}
+}
+
+func TestSlotNbrByRegNbrWithValidArgs(t *testing.T) {
+	parkingcenter.Get().SetParking(parking.New(5))
+
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-HH-9999", "White"))
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-BB-0001", "White"))
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-HH-7777", "Red"))
+
+	sn := NewSlotNbrCarWithRegNbrCommand()
+	if sn == nil {
+		t.Errorf("Expected to have a new Slot Number with Registration Number Command.")
+	}
+
+	if err := sn.Parse("KA-01-HH-9999"); err != nil {
+		t.Errorf("Expected to have no error, but got error saying: %s", err.Error())
+	}
+
+	if err := sn.Validate(); err != nil {
+		t.Errorf("Expected to have no error, but got error saying: %s", err.Error())
+	}
+
+	if result := sn.Execute(); result != "1" {
+		t.Errorf("Expected to have result %s, but got %s", "1", result)
+	}
+}
+
+func TestSlotNbrByRegNbrWhenNotFound(t *testing.T) {
+	parkingcenter.Get().SetParking(parking.New(5))
+
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-HH-9999", "White"))
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-BB-0001", "Black"))
+	parkingcenter.Get().GetParking().EnterCar(car.New("KA-01-HH-7777", "Red"))
+
+	sn := NewSlotNbrCarWithRegNbrCommand()
+	if sn == nil {
+		t.Errorf("Expected to have a new Slot Number with Registration Number Command.")
+	}
+
+	if err := sn.Parse("Yellow"); err != nil {
+		t.Errorf("Expected to have no error, but got error saying: %s", err.Error())
+	}
+
+	if err := sn.Validate(); err != nil {
+		t.Errorf("Expected to have no error, but got error saying: %s", err.Error())
+	}
+
+	if result := sn.Execute(); result != message.NotFound() {
+		t.Errorf("Expected to have result %s, but got %s", message.NotFound(), result)
+	}
+}
