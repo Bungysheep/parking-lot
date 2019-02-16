@@ -2,6 +2,7 @@ package command
 
 import (
 	"errors"
+	"models/parkingcenter"
 	"strings"
 	"utils/constant"
 	"utils/message"
@@ -14,7 +15,7 @@ type RegNbrCarWithColourCommand struct {
 }
 
 // NewStatusCommand - Create a new registration_numbers_for_cars_with_colour command
-func NewStatusCommand() *RegNbrCarWithColourCommand {
+func NewRegNbrCarWithColourCommand() *RegNbrCarWithColourCommand {
 	rn := new(RegNbrCarWithColourCommand)
 	rn.ActionName = constant.RegistrationNumberOfCarsByColourAction
 
@@ -40,8 +41,6 @@ func (rn *RegNbrCarWithColourCommand) Validate() error {
 
 // Execute - Run a registration_numbers_for_cars_with_colour command
 func (rn *RegNbrCarWithColourCommand) Execute() string {
-	result := []string
-
 	result := parkingcenter.Get().GetParking().GetRegNbrByColour(rn.Colour)
 
 	if len(result) == 0 {
