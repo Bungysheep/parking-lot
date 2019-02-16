@@ -25,7 +25,7 @@ func NewSlotNbrCarWithColourCommand() *SlotNbrCarWithColourCommand {
 // Parse - Parse an argument string of slot_numbers_for_cars_with_colour command
 func (sn *SlotNbrCarWithColourCommand) Parse(argString string) error {
 	sn.Command.Parse(argString)
-	if len(sn.Args) != 1 {
+	if len(sn.Args) != 1 || sn.Args[0] == constant.EmptyString {
 		return errors.New(message.ParameterIsInvalid(argString))
 	}
 
