@@ -38,9 +38,21 @@ func TestEnterCar(t *testing.T) {
 		t.Errorf("Expected to have a new Parking.")
 	}
 
-	p.EnterCar(car.New("KA-01-HH-1234", "White"))
-	p.EnterCar(car.New("KA-01-BB-0001", "Black"))
-	p.EnterCar(car.New("KA-01-HH-7777", "Red"))
+	s1 := p.EnterCar(car.New("KA-01-HH-1234", "White"))
+	s2 := p.EnterCar(car.New("KA-01-BB-0001", "Black"))
+	s3 := p.EnterCar(car.New("KA-01-HH-7777", "Red"))
+
+	if s1.GetSlotNbr() != 1 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 1, s1.GetSlotNbr())
+	}
+
+	if s2.GetSlotNbr() != 2 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 2, s2.GetSlotNbr())
+	}
+
+	if s3.GetSlotNbr() != 3 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 3, s3.GetSlotNbr())
+	}
 
 	if p.GetTotalCapacity() != 5 {
 		t.Errorf("Expected to have Parking with Total Capacity %d, but got %d", 10, p.GetTotalCapacity())
@@ -74,9 +86,21 @@ func TestExitFirstCar(t *testing.T) {
 		t.Errorf("Expected to have a new Parking.")
 	}
 
-	p.EnterCar(car.New("KA-01-HH-1234", "White"))
-	p.EnterCar(car.New("KA-01-BB-0001", "Black"))
-	p.EnterCar(car.New("KA-01-HH-7777", "Red"))
+	s1 := p.EnterCar(car.New("KA-01-HH-1234", "White"))
+	s2 := p.EnterCar(car.New("KA-01-BB-0001", "Black"))
+	s3 := p.EnterCar(car.New("KA-01-HH-7777", "Red"))
+
+	if s1.GetSlotNbr() != 1 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 1, s1.GetSlotNbr())
+	}
+
+	if s2.GetSlotNbr() != 2 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 2, s2.GetSlotNbr())
+	}
+
+	if s3.GetSlotNbr() != 3 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 3, s3.GetSlotNbr())
+	}
 
 	p.ExitCar(1)
 
@@ -112,9 +136,21 @@ func TestExitLastCar(t *testing.T) {
 		t.Errorf("Expected to have a new Parking.")
 	}
 
-	p.EnterCar(car.New("KA-01-HH-1234", "White"))
-	p.EnterCar(car.New("KA-01-BB-0001", "Black"))
-	p.EnterCar(car.New("KA-01-HH-7777", "Red"))
+	s1 := p.EnterCar(car.New("KA-01-HH-1234", "White"))
+	s2 := p.EnterCar(car.New("KA-01-BB-0001", "Black"))
+	s3 := p.EnterCar(car.New("KA-01-HH-7777", "Red"))
+
+	if s1.GetSlotNbr() != 1 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 1, s1.GetSlotNbr())
+	}
+
+	if s2.GetSlotNbr() != 2 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 2, s2.GetSlotNbr())
+	}
+
+	if s3.GetSlotNbr() != 3 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 3, s3.GetSlotNbr())
+	}
 
 	p.ExitCar(3)
 
@@ -150,9 +186,21 @@ func TestExitMiddleCar(t *testing.T) {
 		t.Errorf("Expected to have a new Parking.")
 	}
 
-	p.EnterCar(car.New("KA-01-HH-1234", "White"))
-	p.EnterCar(car.New("KA-01-BB-0001", "Black"))
-	p.EnterCar(car.New("KA-01-HH-7777", "Red"))
+	s1 := p.EnterCar(car.New("KA-01-HH-1234", "White"))
+	s2 := p.EnterCar(car.New("KA-01-BB-0001", "Black"))
+	s3 := p.EnterCar(car.New("KA-01-HH-7777", "Red"))
+
+	if s1.GetSlotNbr() != 1 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 1, s1.GetSlotNbr())
+	}
+
+	if s2.GetSlotNbr() != 2 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 2, s2.GetSlotNbr())
+	}
+
+	if s3.GetSlotNbr() != 3 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 3, s3.GetSlotNbr())
+	}
 
 	p.ExitCar(2)
 
@@ -188,9 +236,21 @@ func TestEnterCarOnNearestSlot(t *testing.T) {
 		t.Errorf("Expected to have a new Parking.")
 	}
 
-	p.EnterCar(car.New("KA-01-HH-1234", "White"))
-	p.EnterCar(car.New("KA-01-BB-0001", "Black"))
-	p.EnterCar(car.New("KA-01-HH-7777", "Red"))
+	s1 := p.EnterCar(car.New("KA-01-HH-1234", "White"))
+	s2 := p.EnterCar(car.New("KA-01-BB-0001", "Black"))
+	s3 := p.EnterCar(car.New("KA-01-HH-7777", "Red"))
+
+	if s1.GetSlotNbr() != 1 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 1, s1.GetSlotNbr())
+	}
+
+	if s2.GetSlotNbr() != 2 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 2, s2.GetSlotNbr())
+	}
+
+	if s3.GetSlotNbr() != 3 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 3, s3.GetSlotNbr())
+	}
 
 	p.ExitCar(2)
 
@@ -228,11 +288,31 @@ func TestEnterCarNoAvailableSlot(t *testing.T) {
 		t.Errorf("Expected to have a new Parking.")
 	}
 
-	p.EnterCar(car.New("KA-01-HH-1234", "White"))
-	p.EnterCar(car.New("KA-01-BB-0001", "Black"))
-	p.EnterCar(car.New("KA-01-HH-7777", "Red"))
-	p.EnterCar(car.New("KA-01-HH-2701", "Blue"))
-	p.EnterCar(car.New("KA-01-HH-3141", "Black"))
+	s1 := p.EnterCar(car.New("KA-01-HH-1234", "White"))
+	s2 := p.EnterCar(car.New("KA-01-BB-0001", "Black"))
+	s3 := p.EnterCar(car.New("KA-01-HH-7777", "Red"))
+	s4 := p.EnterCar(car.New("KA-01-HH-2701", "Blue"))
+	s5 := p.EnterCar(car.New("KA-01-HH-3141", "Black"))
+
+	if s1.GetSlotNbr() != 1 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 1, s1.GetSlotNbr())
+	}
+
+	if s2.GetSlotNbr() != 2 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 2, s2.GetSlotNbr())
+	}
+
+	if s3.GetSlotNbr() != 3 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 3, s3.GetSlotNbr())
+	}
+
+	if s4.GetSlotNbr() != 4 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 4, s4.GetSlotNbr())
+	}
+
+	if s5.GetSlotNbr() != 5 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 5, s5.GetSlotNbr())
+	}
 
 	p.EnterCar(car.New("KA-01-HH-9999", "White"))
 
@@ -262,11 +342,31 @@ func TestParkingNoAvailableSlot(t *testing.T) {
 		t.Errorf("Expected to have a new Parking.")
 	}
 
-	p.EnterCar(car.New("KA-01-HH-1234", "White"))
-	p.EnterCar(car.New("KA-01-BB-0001", "Black"))
-	p.EnterCar(car.New("KA-01-HH-7777", "Red"))
-	p.EnterCar(car.New("KA-01-HH-2701", "Blue"))
-	p.EnterCar(car.New("KA-01-HH-3141", "Black"))
+	s1 := p.EnterCar(car.New("KA-01-HH-1234", "White"))
+	s2 := p.EnterCar(car.New("KA-01-BB-0001", "Black"))
+	s3 := p.EnterCar(car.New("KA-01-HH-7777", "Red"))
+	s4 := p.EnterCar(car.New("KA-01-HH-2701", "Blue"))
+	s5 := p.EnterCar(car.New("KA-01-HH-3141", "Black"))
+
+	if s1.GetSlotNbr() != 1 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 1, s1.GetSlotNbr())
+	}
+
+	if s2.GetSlotNbr() != 2 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 2, s2.GetSlotNbr())
+	}
+
+	if s3.GetSlotNbr() != 3 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 3, s3.GetSlotNbr())
+	}
+
+	if s4.GetSlotNbr() != 4 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 4, s4.GetSlotNbr())
+	}
+
+	if s5.GetSlotNbr() != 5 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 5, s5.GetSlotNbr())
+	}
 
 	if p.GetTotalCapacity() != 5 {
 		t.Errorf("Expected to have Parking with Total Capacity %d, but got %d", 10, p.GetTotalCapacity())
