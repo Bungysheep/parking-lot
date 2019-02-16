@@ -87,6 +87,40 @@ func (p *Parking) GetRegNbrByColour(colour string) []string {
 	return rn
 }
 
+// GetSlotNbrByColour - Return Slot Numbers by Colour
+func (p *Parking) GetSlotNbrByColour(colour string) []string {
+	sn := make([]string, 0)
+
+	for _, slot := range p.Slots {
+		if !slot.IsAvailable() {
+			c := slot.GetCar()
+
+			if c != nil && c.GetColour() == colour {
+				sn = append(sn, string(slot.GetSlotNbr()))
+			}
+		}
+	}
+
+	return sn
+}
+
+// GetSlotNbrByRegNbr - Return Slot Numbers by Registration Number
+func (p *Parking) GetSlotNbrByRegNbr(regNbr string) []string {
+	sn := make([]string, 0)
+
+	for _, slot := range p.Slots {
+		if !slot.IsAvailable() {
+			c := slot.GetCar()
+
+			if c != nil && c.GetRegNbr() == regNbr {
+				sn = append(sn, string(slot.GetSlotNbr()))
+			}
+		}
+	}
+
+	return sn
+}
+
 func (p *Parking) getNearestAvailableSlot() *slot.Slot {
 	for _, s := range p.Slots {
 		if s.IsAvailable() {

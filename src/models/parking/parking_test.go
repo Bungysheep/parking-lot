@@ -434,3 +434,75 @@ func TestGetUnavailableSlots(t *testing.T) {
 		}
 	}
 }
+
+func TestGetRegNbrsByColour(t *testing.T) {
+	p := New(5)
+
+	if p == nil {
+		t.Errorf("Expected to have a new Parking.")
+	}
+
+	p.EnterCar(car.New("KA-01-HH-1234", "White"))
+	p.EnterCar(car.New("KA-01-BB-0001", "Black"))
+	p.EnterCar(car.New("KA-01-HH-7777", "Red"))
+
+	rn := p.GetRegNbrByColour("Black")
+
+	if len(rn) != 1 {
+		t.Errorf("Expected to have %d Registration Numbers with Colour '%s', but got %d", 1, "Black", len(rn))
+	}
+
+	rn = p.GetRegNbrByColour("Yellow")
+
+	if len(rn) != 0 {
+		t.Errorf("Expected to have no Registration Numbers with Colour '%s', but got %d", "Yellow", len(rn))
+	}
+}
+
+func TestGetSlotNbrsByColour(t *testing.T) {
+	p := New(5)
+
+	if p == nil {
+		t.Errorf("Expected to have a new Parking.")
+	}
+
+	p.EnterCar(car.New("KA-01-HH-1234", "White"))
+	p.EnterCar(car.New("KA-01-BB-0001", "Black"))
+	p.EnterCar(car.New("KA-01-HH-7777", "Red"))
+
+	sn := p.GetSlotNbrByColour("Black")
+
+	if len(sn) != 1 {
+		t.Errorf("Expected to have %d Slot Numbers with Colour '%s', but got %d", 1, "Black", len(sn))
+	}
+
+	sn = p.GetSlotNbrByColour("Yellow")
+
+	if len(sn) != 0 {
+		t.Errorf("Expected to have no Slot Numbers with Colour '%s', but got %d", "Yellow", len(sn))
+	}
+}
+
+func TestGetSlotNbrsByRegNbr(t *testing.T) {
+	p := New(5)
+
+	if p == nil {
+		t.Errorf("Expected to have a new Parking.")
+	}
+
+	p.EnterCar(car.New("KA-01-HH-1234", "White"))
+	p.EnterCar(car.New("KA-01-BB-0001", "Black"))
+	p.EnterCar(car.New("KA-01-HH-7777", "Red"))
+
+	sn := p.GetSlotNbrByRegNbr("KA-01-BB-0001")
+
+	if len(sn) != 1 {
+		t.Errorf("Expected to have %d Slot Numbers with Registration Number '%s', but got %d", 1, "KA-01-BB-0001", len(sn))
+	}
+
+	sn = p.GetSlotNbrByColour("KA-01-BB-9999")
+
+	if len(sn) != 0 {
+		t.Errorf("Expected to have no Slot Numbers with Colour '%s', but got %d", "KA-01-BB-9999", len(sn))
+	}
+}
