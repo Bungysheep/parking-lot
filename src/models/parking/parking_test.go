@@ -229,6 +229,55 @@ func TestExitMiddleCar(t *testing.T) {
 	}
 }
 
+func TestExitCarAtAvailableSlot(t *testing.T) {
+	p := New(5)
+
+	if p == nil {
+		t.Errorf("Expected to have a new Parking.")
+	}
+
+	s1 := p.EnterCar(car.New("KA-01-HH-1234", "White"))
+	s2 := p.EnterCar(car.New("KA-01-BB-0001", "Black"))
+	s3 := p.EnterCar(car.New("KA-01-HH-7777", "Red"))
+
+	if s1.GetSlotNbr() != 1 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 1, s1.GetSlotNbr())
+	}
+
+	if s2.GetSlotNbr() != 2 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 2, s2.GetSlotNbr())
+	}
+
+	if s3.GetSlotNbr() != 3 {
+		t.Errorf("Expected the Car is parked at Slot %d, but got it is parked at Slot %d", 3, s3.GetSlotNbr())
+	}
+
+	s := p.ExitCar(4)
+	if s != nil {
+		t.Errorf("Expected to have no car parked at Slot %d, but got a car parked", s.GetSlotNbr())
+	}
+
+	if p.GetTotalCapacity() != 5 {
+		t.Errorf("Expected to have Parking with Total Capacity %d, but got %d", 10, p.GetTotalCapacity())
+	}
+
+	if !p.HasAvailableSlot() {
+		t.Errorf("Expected to have Parking available slot, but got no available slot")
+	}
+
+	for i, s := range p.Slots {
+		if s.GetSlotNbr() != i+1 {
+			t.Errorf("Slot %d - Expected to have Slot Number %d, but got %d", i+1, i+1, s.GetSlotNbr())
+		}
+
+		if i <= 2 {
+			if s.IsAvailable() {
+				t.Errorf("Slot %d - Expected to have a Car in this Slot, but got no Car", s.GetSlotNbr())
+			}
+		}
+	}
+}
+
 func TestEnterCarOnNearestSlot(t *testing.T) {
 	p := New(5)
 

@@ -14,7 +14,7 @@ type SlotNbrCarWithColourCommand struct {
 	Colour string
 }
 
-// NewStatusCommand - Create a new slot_numbers_for_cars_with_colour command
+// NewSlotNbrCarWithColourCommand - Create a new slot_numbers_for_cars_with_colour command
 func NewSlotNbrCarWithColourCommand() *SlotNbrCarWithColourCommand {
 	sn := new(SlotNbrCarWithColourCommand)
 	sn.ActionName = constant.SlotNumberOfCarsByColourAction

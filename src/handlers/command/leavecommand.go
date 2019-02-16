@@ -46,7 +46,15 @@ func (l *LeaveCommand) Validate() error {
 
 // Execute - Run a leave command
 func (l *LeaveCommand) Execute() string {
-	parkingcenter.Get().GetParking().ExitCar(l.SlotNbr)
+	parking := parkingcenter.Get().GetParking()
+	if l.SlotNbr > parking.GetTotalCapacity() || l.SlotNbr < constant.MinimumCapacity {
+		return message.SlotIsInvalid(l.SlotNbr)
+	}
+
+	slot := parkingcenter.Get().GetParking().ExitCar(l.SlotNbr)
+	if slot == nil {
+		return message.NoCarParkedAtSlot(l.SlotNbr)
+	}
 
 	return message.CarExit(l.SlotNbr)
 }

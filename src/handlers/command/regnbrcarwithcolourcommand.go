@@ -14,7 +14,7 @@ type RegNbrCarWithColourCommand struct {
 	Colour string
 }
 
-// NewStatusCommand - Create a new registration_numbers_for_cars_with_colour command
+// NewRegNbrCarWithColourCommand - Create a new registration_numbers_for_cars_with_colour command
 func NewRegNbrCarWithColourCommand() *RegNbrCarWithColourCommand {
 	rn := new(RegNbrCarWithColourCommand)
 	rn.ActionName = constant.RegistrationNumberOfCarsByColourAction

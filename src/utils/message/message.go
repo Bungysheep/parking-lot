@@ -32,6 +32,16 @@ func ParkingIsFull() string {
 	return fmt.Sprintf("Sorry, parking lot is full")
 }
 
+// SlotIsInvalid message
+func SlotIsInvalid(slotNbr int) string {
+	return fmt.Sprintf("Slot '%d' is invalid", slotNbr)
+}
+
+// NoCarParkedAtSlot message
+func NoCarParkedAtSlot(slotNbr int) string {
+	return fmt.Sprintf("No Car parked at Slot '%d'", slotNbr)
+}
+
 // CarEntered message
 func CarEntered(slotNbr int) string {
 	return fmt.Sprintf("Allocated slot number: %d", slotNbr)

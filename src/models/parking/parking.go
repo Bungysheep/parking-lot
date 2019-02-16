@@ -53,8 +53,16 @@ func (p *Parking) EnterCar(c *car.Car) *slot.Slot {
 }
 
 // ExitCar - Exit car from a parking
-func (p *Parking) ExitCar(slotNbr int) {
-	p.Slots[slotNbr-1].Exit()
+func (p *Parking) ExitCar(slotNbr int) *slot.Slot {
+	for _, slot := range p.Slots {
+		if slot.GetSlotNbr() == slotNbr && !slot.IsAvailable() {
+			slot.Exit()
+
+			return slot
+		}
+	}
+
+	return nil
 }
 
 // GetUnavailableSlots - Return all unavailable slots

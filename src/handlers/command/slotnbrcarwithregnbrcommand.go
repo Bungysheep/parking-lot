@@ -14,7 +14,7 @@ type SlotNbrCarWithRegNbrCommand struct {
 	RegNbr string
 }
 
-// NewStatusCommand - Create a new slot_number_for_registration_number command
+// NewSlotNbrCarWithRegNbrCommand - Create a new slot_number_for_registration_number command
 func NewSlotNbrCarWithRegNbrCommand() *SlotNbrCarWithRegNbrCommand {
 	sn := new(SlotNbrCarWithRegNbrCommand)
 	sn.ActionName = constant.SlotNumberByRegistrationNumberAction
