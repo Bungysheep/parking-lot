@@ -5,6 +5,7 @@ import (
 	"models/slot"
 )
 
+// Parking type
 type Parking struct {
 	Slots []*slot.Slot
 }
@@ -54,6 +55,19 @@ func (p *Parking) EnterCar(c *car.Car) *slot.Slot {
 // ExitCar - Exit car from a parking
 func (p *Parking) ExitCar(slotNbr int) {
 	p.Slots[slotNbr-1].Exit()
+}
+
+// GetUnavailableSlots - Return all unavailable slots
+func (p *Parking) GetUnavailableSlots() []*slot.Slot {
+	s := make([]*slot.Slot, 0)
+
+	for _, slot := range p.Slots {
+		if !slot.IsAvailable() {
+			s = append(s, slot)
+		}
+	}
+
+	return s
 }
 
 func (p *Parking) getNearestAvailableSlot() *slot.Slot {

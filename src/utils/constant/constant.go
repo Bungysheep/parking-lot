@@ -7,6 +7,9 @@ const (
 	// WhiteSpace - White space
 	WhiteSpace = " "
 
+	// NewLine - New line
+	NewLine = "\n"
+
 	// MinimumCapacity - Minimum Capacity of a parking lot
 	MinimumCapacity = 1
 

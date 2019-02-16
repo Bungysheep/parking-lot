@@ -36,3 +36,8 @@ func ParkingIsFull() string {
 func CarEntered(slotNbr int) string {
 	return fmt.Sprintf("Allocated slot number: %d", slotNbr)
 }
+
+// CarExit message
+func CarExit(slotNbr int) string {
+	return fmt.Sprintf("Slot number %d is free", slotNbr)
+}
