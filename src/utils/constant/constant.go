@@ -14,7 +14,7 @@ const (
 	Comma = ", "
 
 	// MinimumCapacity - Minimum Capacity of a parking lot
-	MinimumCapacity = 1
+	MinimumCapacity = 0
 
 	// PS1 - Primary prompt
 	PS1 = "$"

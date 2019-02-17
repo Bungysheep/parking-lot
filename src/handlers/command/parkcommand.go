@@ -44,6 +44,10 @@ func (p *ParkCommand) Validate() error {
 // Execute - Run a park command
 func (p *ParkCommand) Execute() string {
 	parking := parkingcenter.Get().GetParking()
+	if parking.GetTotalCapacity() <= constant.MinimumCapacity {
+		return message.ParkingHasNotBeenCreated()
+	}
+
 	if !parking.HasAvailableSlot() {
 		return message.ParkingIsFull()
 	}

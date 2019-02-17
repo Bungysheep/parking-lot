@@ -3,6 +3,7 @@ package parkingcenter
 import (
 	"models/parking"
 	"testing"
+	"utils/constant"
 )
 
 func TestCreateParkingCenter(t *testing.T) {
@@ -20,8 +21,8 @@ func TestCreateParkingCenter(t *testing.T) {
 		t.Errorf("Expected to have a Parking.")
 	}
 
-	if Get().Parking.GetTotalCapacity() != 1 {
-		t.Errorf("Expected to have a default Parking Center with Capacity %d, but got %d.", 1, Get().Parking.GetTotalCapacity())
+	if Get().Parking.GetTotalCapacity() != constant.MinimumCapacity {
+		t.Errorf("Expected to have a default Parking Center with Capacity %d, but got %d.", constant.MinimumCapacity, Get().Parking.GetTotalCapacity())
 	}
 }
 

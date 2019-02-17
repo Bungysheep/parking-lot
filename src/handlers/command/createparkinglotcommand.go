@@ -42,8 +42,8 @@ func (cp *CreateParkingLotCommand) Parse(argString string) error {
 
 // Validate - Validate whether the parameters of create_parking_lot command is valid
 func (cp *CreateParkingLotCommand) Validate() error {
-	if cp.Capacity < constant.MinimumCapacity {
-		return errors.New(message.ParkingCapacityLessThanMinimumCapacity())
+	if cp.Capacity <= constant.MinimumCapacity {
+		return errors.New(message.ParkingCapacityMustBeGreaterMinimumCapacity())
 	}
 
 	return nil
