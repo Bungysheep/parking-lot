@@ -78,6 +78,27 @@ func TestCreateParkingLotWithValidArgs(t *testing.T) {
 	}
 }
 
+func TestParkCarWhenParkingUncreated(t *testing.T) {
+	parkingcenter.Get().SetParking(parking.New(constant.MinimumCapacity))
+
+	p := NewParkCommand()
+	if p == nil {
+		t.Errorf("Expected to have a new Park Command.")
+	}
+
+	if err := p.Parse("KA-01-HH-1234 White"); err != nil {
+		t.Errorf("Expected to have no error, but got an error saying: %s", err.Error())
+	}
+
+	if err := p.Validate(); err != nil {
+		t.Errorf("Expected to have no error, but got an error saying: %s", err.Error())
+	}
+
+	if result := p.Execute(); result != message.ParkingHasNotBeenCreated() {
+		t.Errorf("Expected to have result: %s, but got %s", message.ParkingHasNotBeenCreated(), result)
+	}
+}
+
 func TestParkCarWithoutArgs(t *testing.T) {
 	parkingcenter.Get().SetParking(parking.New(3))
 
