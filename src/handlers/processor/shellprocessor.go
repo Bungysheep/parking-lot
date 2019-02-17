@@ -32,18 +32,18 @@ func (sp *ShellProcessor) Run() {
 		if input != constant.EmptyString {
 			switch input {
 			case constant.ExitAction:
-				os.Exit(2)
+				fmt.Print(constant.NewLine)
+				return
 			default:
 				result, err := cm.Execute(input)
 				if err != nil {
 					fmt.Println("Error:", err.Error())
 				} else {
-					fmt.Println(result)
+					fmt.Println(result + constant.NewLine)
 				}
 			}
 		}
 
-		fmt.Print(constant.NewLine)
 		sp.displayPrompt()
 	}
 }
