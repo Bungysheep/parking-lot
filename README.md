@@ -28,4 +28,6 @@ Provide funtionalities where user can run the application with a file input.
 Run the following command under the project directory: ./bin/setup
 
 #### Run
-Run the following command under the project directory: ./bin/parking_lot
+To run in interactive shell command, run the following command under the project directory: ./bin/parking_lot
+
+To run with input filename, run the following command under the project directory: ./bin/parking_lot <filename>
