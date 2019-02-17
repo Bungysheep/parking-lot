@@ -8,4 +8,19 @@
 
 export GOPATH=`pwd`
 
+go install models/car
+go install models/parking
+go install models/parkingcenter
+go install models/slot
+
+go install handlers/command
+go install handlers/commandmanager
+go install handlers/processor
+
+go install utils/constant
+go install utils/message
+
+go clean -testcache
+go test ./...
+
 go build -o parking_lot ./src/main.go
