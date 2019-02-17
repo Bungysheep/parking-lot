@@ -37,7 +37,7 @@ func TestCreateParkingLotWithInvalidArgs(t *testing.T) {
 	}
 }
 
-func TestCreateParkingLotLessThanMinimumCapacity(t *testing.T) {
+func TestCreateParkingLotLessThanEqualMinimumCapacity(t *testing.T) {
 	cp := NewCreateParkingLotCommand()
 	if cp == nil {
 		t.Errorf("Expected to have a new Create Parking Lot Command.")
@@ -50,8 +50,8 @@ func TestCreateParkingLotLessThanMinimumCapacity(t *testing.T) {
 	}
 
 	err = cp.Validate()
-	if err == nil || err.Error() != message.ParkingCapacityLessThanMinimumCapacity() {
-		t.Errorf("Expected to have an error saying: %s, but got no error", message.ParkingCapacityLessThanMinimumCapacity())
+	if err == nil || err.Error() != message.ParkingCapacityMustBeGreaterMinimumCapacity() {
+		t.Errorf("Expected to have an error saying: %s, but got no error", message.ParkingCapacityMustBeGreaterMinimumCapacity())
 	}
 }
 

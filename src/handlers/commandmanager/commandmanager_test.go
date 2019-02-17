@@ -104,7 +104,7 @@ func TestCOmmandManagerWithInvalidActionArgs(t *testing.T) {
 	}
 
 	_, err = cm.Execute("create_parking_lot 0")
-	if err.Error() != message.ParkingCapacityLessThanMinimumCapacity() {
-		t.Errorf("Expected to have an error saying: %s, but got error: %s", message.ParkingCapacityLessThanMinimumCapacity(), err.Error())
+	if err.Error() != message.ParkingCapacityMustBeGreaterMinimumCapacity() {
+		t.Errorf("Expected to have an error saying: %s, but got error: %s", message.ParkingCapacityMustBeGreaterMinimumCapacity(), err.Error())
 	}
 }

@@ -17,9 +17,14 @@ func CommandIsInvalid(command string) string {
 	return fmt.Sprintf("Command '%s' is invalid", command)
 }
 
-// ParkingCapacityLessThanMinimumCapacity message
-func ParkingCapacityLessThanMinimumCapacity() string {
-	return fmt.Sprintf("Parking Capacity is less than Minimum Capacity")
+// ParkingCapacityMustBeGreaterMinimumCapacity message
+func ParkingCapacityMustBeGreaterMinimumCapacity() string {
+	return fmt.Sprintf("Parking Capacity must be greater than Minimum Capacity")
+}
+
+// ParkingHasNotBeenCreated message
+func ParkingHasNotBeenCreated() string {
+	return fmt.Sprintf("Parking has not been created")
 }
 
 // ParkingCreated message
