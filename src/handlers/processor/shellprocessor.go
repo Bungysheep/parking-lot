@@ -38,6 +38,7 @@ func (sp *ShellProcessor) Run() {
 				result, err := cm.Execute(input)
 				if err != nil {
 					fmt.Println("Error:", err.Error())
+					fmt.Println()
 				} else {
 					fmt.Println(result + constant.NewLine)
 				}
