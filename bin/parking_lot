@@ -18,7 +18,4 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 # 
 # Important: Above commands is just examples, please modify to suit your requirement as necessary
 
-export GOPATH=`pwd`
-
-go build -o parking_lot ./src/main.go
 ./parking_lot "$1"
